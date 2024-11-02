@@ -3,8 +3,9 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <h1>VueJS Product Management App</h1>
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped></style>
