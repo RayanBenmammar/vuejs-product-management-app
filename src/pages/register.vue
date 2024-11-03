@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const formData = ref({
+  username: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+})
+</script>
 
 <template>
   <div
@@ -19,22 +28,41 @@
         <form class="grid gap-4">
           <div class="grid gap-2">
             <Label id="username" class="text-left">Username</Label>
-            <Input id="username" type="text" placeholder="johndoe19" required />
+            <Input
+              id="username"
+              v-model="formData.username"
+              type="text"
+              placeholder="johndoe19"
+              required
+            />
           </div>
           <div class="flex flex-col sm:flex-row justify-between gap-4">
             <div class="grid gap-2">
               <Label id="first_name" class="text-left">First Name</Label>
-              <Input id="first_name" type="text" placeholder="John" required />
+              <Input
+                id="first_name"
+                v-model="formData.firstName"
+                type="text"
+                placeholder="John"
+                required
+              />
             </div>
             <div class="grid gap-2">
               <Label id="last_name" class="text-left">Last Name</Label>
-              <Input id="last_name" type="text" placeholder="Doe" required />
+              <Input
+                id="last_name"
+                v-model="formData.lastName"
+                type="text"
+                placeholder="Doe"
+                required
+              />
             </div>
           </div>
           <div class="grid gap-2">
             <Label id="email" class="text-left">Email</Label>
             <Input
               id="email"
+              v-model="formData.email"
               type="email"
               placeholder="johndoe19@example.com"
               required
@@ -45,6 +73,7 @@
             <Label id="password" class="text-left">Password</Label>
             <Input
               id="password"
+              v-model="formData.password"
               type="password"
               placeholder="*****"
               autocomplete
@@ -58,6 +87,8 @@
             >
             <Input
               id="confirm_password"
+              v-model="formData.confirmPassword"
+              confirm_password
               type="password"
               placeholder="*****"
               autocomplete
