@@ -16,22 +16,24 @@ export const useAuthStore = defineStore('auth-store', () => {
 
     if (!profile.value || profile.value.id !== user.value.id) {
       const { data } = await profileQuery(user.value.id)
+
       profile.value = data || null
     }
   }
 
-  const setAuth = async (userSession: Session | null = null) => {
+  const setAuth = async (userSession: null | Session = null) => {
     if (!userSession) {
       user.value = null
       profile.value = null
       return
     }
 
+    user.value = userSession.user
     await setProfile()
   }
 
   const getSession = async () => {
-    const { data, error } = await supabase.auth.getSession()
+    const { data } = await supabase.auth.getSession()
     if (data.session?.user) await setAuth(data.session)
   }
 
@@ -41,7 +43,7 @@ export const useAuthStore = defineStore('auth-store', () => {
     isTrackingAuthChanges.value = true
     supabase.auth.onAuthStateChange((event, session) => {
       setTimeout(async () => {
-        await useAuthStore().setAuth(session)
+        await setAuth(session)
       }, 0)
     })
   }
