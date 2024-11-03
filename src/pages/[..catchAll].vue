@@ -1,11 +1,9 @@
 <script setup lang="ts">
-usePageStore().pageData.title = 'Error Page'
+usePageStore().pageData.title = ''
+
+useErrorStore().setError()
 </script>
 
 <template>
-  <div>
-    <h1>404 Not Found</h1>
-  </div>
+  <div></div>
 </template>
-
-<style scoped></style>
