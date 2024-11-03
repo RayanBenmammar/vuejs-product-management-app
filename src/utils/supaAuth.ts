@@ -20,7 +20,7 @@ export const register = async (formData: RegisterForm) => {
     if (error) return console.log('Profiles err: ', error)
   }
 
-  authStore.setAuth(data.session)
+  await authStore.setAuth(data.session)
   return true
 }
 
@@ -31,6 +31,6 @@ export const login = async (formData: LoginForm) => {
   })
   if (error) return console.log(error)
 
-  authStore.setAuth(data.session)
+  await authStore.setAuth(data.session)
   return true
 }
